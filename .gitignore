@@ -46,3 +46,7 @@ app.*.map.json
 
 # Widget Preview related
 .widget_preview/
+
+# Configuración privada de Finza (Client ID de Google y token de GitHub).
+# Ver finza_config.example.json.
+finza_config.json

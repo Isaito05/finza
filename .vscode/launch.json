@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Finza",
+      "request": "launch",
+      "type": "dart",
+      "args": ["--dart-define-from-file=finza_config.json"]
+    },
+    {
+      "name": "Finza (sin configuración)",
+      "request": "launch",
+      "type": "dart"
+    }
+  ]
+}

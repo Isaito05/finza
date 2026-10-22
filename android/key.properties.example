@@ -1,0 +1,23 @@
+# Copia este archivo como "key.properties" (sin .example) en esta misma carpeta
+# y completa los valores. key.properties NUNCA se commitea (ver .gitignore).
+#
+# 1. Genera el keystore de release UNA sola vez y guárdalo en un lugar seguro,
+#    fuera del repo (y con copia de respaldo). Requiere Java/JDK; el de Android
+#    Studio sirve. En PowerShell:
+#
+#    keytool -genkey -v -keystore $env:USERPROFILE\finza-release.jks `
+#      -keyalg RSA -keysize 2048 -validity 10000 -alias finza
+#
+#    Si "keytool" no se reconoce, usa el que trae Android Studio:
+#    & "C:\Program Files\Android\Android Studio\jbr\bin\keytool.exe" ...
+#
+#    Te pide una contraseña para el keystore y otra para la llave (puede ser
+#    la misma). Si pierdes el .jks o las contraseñas, las próximas versiones
+#    no se van a poder instalar encima: habría que desinstalar la app y se
+#    perderían los datos guardados en el teléfono.
+#
+# 2. Completa con los datos reales (en Windows usa / en la ruta):
+storeFile=C:/Users/TU_USUARIO/finza-release.jks
+storePassword=TU_STORE_PASSWORD
+keyAlias=finza
+keyPassword=TU_KEY_PASSWORD
