@@ -64,6 +64,12 @@ android {
             } else {
                 signingConfigs.getByName("debug")
             }
+            // Reglas propias de R8 (ver proguard-rules.pro): sin ellas R8 borra
+            // metodos de plugins que se llaman por JNI y la app abre en negro.
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro",
+            )
         }
     }
 }
