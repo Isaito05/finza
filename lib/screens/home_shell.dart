@@ -120,9 +120,26 @@ class _HomeShellState extends State<HomeShell> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          _titulos[tab],
-          style: const TextStyle(fontWeight: FontWeight.bold),
+        title: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 250),
+          child: tab == HomeShell.tabInicio
+              ? Row(
+                  key: const ValueKey('marca'),
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(9),
+                      child: Image.asset(
+                        'assets/branding/logo.png',
+                        width: 32,
+                        height: 32,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Text(_titulos[tab]),
+                  ],
+                )
+              : Text(_titulos[tab], key: ValueKey(tab)),
         ),
         actions: [
           const _BotonOcultarMontos(),
@@ -135,8 +152,8 @@ class _HomeShellState extends State<HomeShell> {
           ),
         ],
       ),
-      body: IndexedStack(
-        index: tab,
+      body: _PestanasAnimadas(
+        indice: tab,
         children: const [
           InicioScreen(),
           MovimientosScreen(),
@@ -170,7 +187,63 @@ class _HomeShellState extends State<HomeShell> {
           ),
         ],
       ),
-      floatingActionButton: _botonAgregar(tab),
+      floatingActionButton: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 250),
+        transitionBuilder: (child, animacion) => ScaleTransition(
+          scale: animacion,
+          child: FadeTransition(opacity: animacion, child: child),
+        ),
+        child: KeyedSubtree(
+          key: ValueKey(tab),
+          child: _botonAgregar(tab) ?? const SizedBox.shrink(),
+        ),
+      ),
+    );
+  }
+}
+
+/// Como un IndexedStack (cada pestaña conserva su estado y su scroll), pero
+/// la pestaña que entra aparece con un desvanecido y un leve desplazamiento.
+class _PestanasAnimadas extends StatefulWidget {
+  const _PestanasAnimadas({required this.indice, required this.children});
+
+  final int indice;
+  final List<Widget> children;
+
+  @override
+  State<_PestanasAnimadas> createState() => _PestanasAnimadasState();
+}
+
+class _PestanasAnimadasState extends State<_PestanasAnimadas>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controlador = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 280),
+    value: 1,
+  );
+
+  @override
+  void didUpdateWidget(covariant _PestanasAnimadas anterior) {
+    super.didUpdateWidget(anterior);
+    if (anterior.indice != widget.indice) _controlador.forward(from: 0);
+  }
+
+  @override
+  void dispose() {
+    _controlador.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final curva = CurvedAnimation(parent: _controlador, curve: Curves.easeOutCubic);
+    return FadeTransition(
+      opacity: curva,
+      child: SlideTransition(
+        position: Tween<Offset>(begin: const Offset(0, 0.02), end: Offset.zero)
+            .animate(curva),
+        child: IndexedStack(index: widget.indice, children: widget.children),
+      ),
     );
   }
 }

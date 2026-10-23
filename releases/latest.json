@@ -1,0 +1,9 @@
+{
+    "version":  "1.1.0",
+    "versionCode":  3,
+    "apk":  "releases/Finza-v1.1.0-3.apk",
+    "sha256":  "5aa2f5ffcd3089b6e8bab94880f68c09df8edb946c714f1790405457126152dc",
+    "tamano":  38511779,
+    "changelog":  "Arregla la pantalla negra al abrir. Nuevo logo e ícono, colores renovados con mejor contraste y animaciones.",
+    "fecha":  "2026-10-21"
+}

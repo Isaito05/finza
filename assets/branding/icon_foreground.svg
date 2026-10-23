@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="fondo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4F46E5"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+    <radialGradient id="brillo" cx="0.22" cy="0.12" r="0.95">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.26"/>
+      <stop offset="0.6" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="moneda" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6EE7B7"/>
+      <stop offset="1" stop-color="#059669"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(512 512) scale(0.72) translate(-548 -483)">
+  <g id="marca" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- F: asta y brazo superior que sube como tendencia -->
+    <path d="M330 770 V360 Q330 312 378 312 H500 L712 186" stroke-width="92"/>
+    <!-- punta de flecha -->
+    <path d="M604 176 H722 V294" stroke-width="80"/>
+    <!-- brazo medio -->
+    <path d="M330 540 H512" stroke-width="92"/>
+  </g>
+  <!-- moneda -->
+  <circle cx="694" cy="708" r="118" fill="url(#moneda)"/>
+  <circle cx="694" cy="708" r="118" fill="none" stroke="#FFFFFF" stroke-width="20" stroke-opacity="0.9"/>
+  <text x="694" y="708" text-anchor="middle" dominant-baseline="central" font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="150" fill="#FFFFFF">$</text>
+  </g>
+</svg>
